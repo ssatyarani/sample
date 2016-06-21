@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Yaksh </title>
+</head>
+<body>
+	<form method="post" >
+	{% csrf_token %}
+	<h2>{{ title }}</h2>
+	<table>
+
+	{{ form.as_table }}
+	<tr><td></td><td> <input type="Submit" value="Add" /></td></tr>
+	</table>
+	</form>
+</body>
+</html>

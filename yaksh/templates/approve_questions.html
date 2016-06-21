@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Yaksh</title>
+</head>
+<body>
+	<ul>
+	{% for each in question_choices %}
+		<li>
+		{{ each.Question.text }}
+		<ul>
+		{% for each_choice in each.Choices %}
+			<li> 
+			
+			{% if each_choice.correct %}
+			<b><u>
+			{% endif %}
+
+			{{ each_choice.text }} 
+
+			</u></b>
+			</li>
+		{% endfor %}
+		</ul>
+		
+		Status: <b>{{ each.Question.get_status_display }}</b>
+		{% ifequal each.Question.status 0 %}	
+		<button onclick="window.location={{each.Question.id}}">Approve </button>
+		{% endifequal %}
+		</li>
+	{% endfor %}
+	{% for each in question_result %}
+		<li>
+		{{ each.Question.text }}
+		<ul>
+		
+		{% for testcase in each.Testcases %}
+		<b>Testcase</b>
+		<ul>
+		Input:
+		{% for input in testcase.input %}
+				<li>{{input.value}}</li>
+		{% endfor %}
+		</ul>
+
+		<ul>
+		Output:
+		{% for output in testcase.output %}
+			<li>{{ output.value }}</li>
+		{% endfor %}
+		</ul>
+
+		{% endfor %}
+		
+		
+		</ul>
+		Status: <b>{{ each.Question.get_status_display }}</b>
+		{% ifequal each.Question.status 0 %}	
+		<button onclick="window.location={{each.Question.id}}">Approve </button>
+		{% endifequal %}
+		</li>
+
+	{% endfor %}
+
+	</ul>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Yaksh </title>
+</head>
+<body>
+	<form method="post" >
+	{% csrf_token %}
+	<h2>Add Code Question</h2>
+	
+		{{ form.as_p }}
+
+	No of test cases: <input type="number" id="id_no_of_testcases"  value="1" /><br />
+	No of inputs: <input type="number" id="id_no_of_inputs"  value="1" /><br />
+	<script
+			  src="https://code.jquery.com/jquery-1.7.min.js"
+			  integrity="sha256-/05Jde9AMAT4/o5ZAI23rUf1SxDYTHLrkOco0eyRV84="
+			  crossorigin="anonymous"></script>	
+				<script type='text/javascript'>
+				
+				$(document).ready( function() {
+    			$('#id_no_of_testcases').on('change', addFields);
+    			function addFields(){
+				var ch = document.getElementById("id_no_of_testcases").value;
+				
+				var container = document.getElementById("testcase_container");
+				while (container.hasChildNodes()) {
+					
+					container.removeChild(container.lastChild);
+				}
+				for (i=1;i<=ch;i++){
+				container.appendChild(document.createTextNode("Testcase "+(i)));
+
+				var input = document.createElement("input");
+				input.type = "text";
+				input.name = "no_of_inputs" + i;
+				input.id = ("input"+(i));
+				container.appendChild(input);
+
+				$('#id_no_of_inputs').on('change', addinputs); 
+    			function addinputs(){
+				var ch = document.getElementById("id_no_of_inputs").value;
+				
+				var container = document.getElementById("input_container");
+				while (container.hasChildNodes()) {
+					
+					container.removeChild(container.lastChild);
+				}
+				for (i=1;i<=ch;i++){
+				container.appendChild(document.createTextNode("input "+(i)));
+
+				var input = document.createElement("input");
+				input.type = "text";
+				input.name = "input" + i;
+				input.id = ("input"+(i));
+				container.appendChild(input);
+				container.appendChild(document.createElement("br"));
+				}
+				document.getElementById("input_container").innerHTML=container.innerHTML;
+				}
+
+
+				var output = document.createElement("input");
+				output.type = "text";
+				output.name = "no_of_outputs" + i;
+				output.id = ("output"+(i));
+				container.appendChild(output);
+
+				container.appendChild(document.createElement("br"));
+				}
+				document.getElementById("testcase_container").innerHTML=container.innerHTML;
+				}
+
+			});
+
+
+
+	</script>
+	<div id="testcase_container" >
+
+
+	</div>
+
+	<tr><td></td><td> <input type="Submit" value="Add" /></td></tr>
+	
+	</form>
+
+</body>
+</html>

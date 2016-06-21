@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Yaksh </title>
+</head>
+<body>
+	<form method="post" >
+	{% csrf_token %}
+	<table>
+	<tr>
+	<th>Choice Text</th>
+	<th>Is Correct</th>
+	</tr>
+	{% for choice in choices %}
+		<tr>
+		<td>
+		<textarea name="choice{{choice}}" placeholder="Enter Choice {{choice}}" rows=5 cols=30 ></textarea>
+		</td>
+		<td>
+		<input type="checkbox" name="correct{{choice}}" value=True />
+		</td>
+		</tr>
+	{% endfor %}
+		<tr>
+		<td></td>
+		<td><input type="submit" value="Add" ></td>
+		</tr>
+	</table>
+
+	</form>
+	
+</body>
+</html>
